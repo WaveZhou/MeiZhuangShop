@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zx.mapper.ShopcarMapper">
+
+      <select id="getShopCarByArticleIdAndUserId" resultMap="shopCarMapper">
+          select * from ec_shopcar where article_id = #{shopId} and user_id = #{userId}
+      </select>
+      
+      <resultMap type="ShopCar" id="shopCarMapper">
+          <result column="user_id" property="userId"/>
+          <result column="article_id" property="articleId"/>
+          <association property="article" column="article_id" select="com.zx.mapper.ArticleMapper.findArticleById"></association>
+          
+      </resultMap>
+      
+      
+      
+      <select id="getShopCarByUserId" resultMap="shopCarMapper">
+      
+           select *  from ec_shopcar where user_id = #{id}
+            
+      </select>
+   
+      
+</mapper>

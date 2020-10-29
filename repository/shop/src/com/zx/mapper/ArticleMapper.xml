@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zx.mapper.ArticleMapper">
+
+     <select id="findTotalNum" resultType="int">
+             SELECT count(*) FROM ec_article WHERE disabled=0 and type_code LIKE #{typeCode} and title like #{keyword}
+     </select>
+     
+     
+     <select id="findArticlesByCode" resultType="Article">
+          SELECT * FROM ec_article WHERE disabled=0 and type_code LIKE #{typeCode} and title like #{keyword}  limit #{pageModel.startNum},#{pageModel.pageSize}
+     </select>
+</mapper>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zx.mapper.OrderItemMapper">
+ 
+        <select id="findOrderItemByOrderId" resultMap="ItemMapper">
+           SELECT article_id,order_num FROM ec_order_item WHERE order_id = #{id}
+        </select>
+        
+        <resultMap type="com.zx.vo.OrderItem" id="ItemMapper">
+             <result column="order_num" property="orderNum"/>
+             <!-- 根据商品id查询商品信息 -->
+             <association property="article" column="article_id" select="com.zx.mapper.ArticleMapper.findArticleById"></association>
+        </resultMap>
+</mapper>
